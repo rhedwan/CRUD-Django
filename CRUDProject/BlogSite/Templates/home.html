@@ -1,0 +1,28 @@
+{% extends 'baselog.html' %}
+{% block content %}
+    <h1>Welcome, You are signed in. You can perform all CRUD operation here</h1>
+    <div class="container-fluid">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for post in object_list %}
+            <div class="col" >
+                <div class="card" style="width: 18rem;" >
+                    <div class="card-body">
+                      <h5 class="card-title">{{post.title}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{post.date}}</h6>
+                      <p class="card-text">{{post.body | truncatewords:35}}</p>
+                      <h5 class="card-title text-capitalize">Posted By: {{post.author}}</h5>
+                      <a href="{% url 'post_detail' post.pk %}" class="card-link">Read More</a>
+                      <a href="{% url 'comment' post.pk %}" class="card-link">Comment</a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    {% for comment in post.comments.all %}
+                    <p><span class="font-weight-bold">{{ comment.author }} &middot; </span>
+                     {{ comment }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <h1>This page is for those that have't signed In. You can only read post</h1>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for post in object_list %}
+            <div class="col" >
+                <div class="card" style="width: 18rem;" >
+                    <div class="card-body">
+                      <h5 class="card-title">{{post.title}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{post.date}}</h6>
+                      <p class="card-text">{{post.body | truncatewords:35}}</p>
+                      <h5 class="card-title text-capitalize">Posted By: {{post.author}}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=140)
+    author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment
+
+    def get_absolute_url(self):
+        return reverse('home')
+model*************************
+
+
+class CommentInline(admin.TabularInline): # new
+    model = Comment
+class PostAdmin(admin.ModelAdmin):
+    inlines = [
+    CommentInline,
+    ]
+
+
+
+
+
+
+
+    class CommentCreateView(CreateView):
+    model = Comment
+    template_name = 'comment.html'
+    fields = ['name', 'body']
+
+
+    class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name="comment", on_delete=models.CASCADE)
+    name = models.CharField(max_length=25)
+    body = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.post.title
