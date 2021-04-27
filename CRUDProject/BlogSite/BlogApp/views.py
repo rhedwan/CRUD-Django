@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Post 
+from .models import Post , Comment
 # Create your views here.
 
+class CommentCreateView(CreateView):
+    model = Comment
+    template_name = 'comment.html'
+    fields = '__all__'
 
 class BlogListView(ListView):
     model = Post

@@ -12,6 +12,21 @@
                       <p class="card-text">{{post.body | truncatewords:35}}</p>
                       <h5 class="card-title text-capitalize">Posted By: {{post.author}}</h5>
                     </div>
+                    <div class="card-body">
+                        <hr>
+                        {% if not post.comments.all %}
+                            No Comment Yet
+                        
+                        {% else %}
+                            {% for comment in post.comments.all %}
+                                 <h3>Comments</h3>
+                                 <strong>
+                                    Author : {{ comment.author }} <br>
+                                    Comment: {{comment.comment}}
+                                 </strong>      
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             {% endfor %}

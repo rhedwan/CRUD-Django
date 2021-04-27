@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import BlogListView, BlogCreateView, BlogDetailView,BlogUpdateView, BlogDeleteView, BlogIndexView
+from .views import BlogListView, BlogCreateView, BlogDetailView,BlogUpdateView, BlogDeleteView, BlogIndexView, CommentCreateView
 
 
 urlpatterns = [
+    path('post/<int:pk>/comment', CommentCreateView.as_view(), name='comment' ),
     path('', BlogListView.as_view(), name='index' ),
     path('home/', BlogIndexView.as_view(), name='home' ),
     path('new/', BlogCreateView.as_view(), name='new'),

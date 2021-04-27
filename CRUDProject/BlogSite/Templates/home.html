@@ -11,15 +11,26 @@
                       <h6 class="card-subtitle mb-2 text-muted">{{post.date}}</h6>
                       <p class="card-text">{{post.body | truncatewords:35}}</p>
                       <h5 class="card-title text-capitalize">Posted By: {{post.author}}</h5>
-                      <a href="{% url 'post_detail' post.pk %}" class="card-link">Read More</a>
-                      <a href="{% url 'comment' post.pk %}" class="card-link">Comment</a>
+                      <a href="{% url 'post_detail' post.pk %}" class="card-link">Read More</a> 
                     </div>
-                </div>
-                <div class="card-footer">
-                    {% for comment in post.comments.all %}
-                    <p><span class="font-weight-bold">{{ comment.author }} &middot; </span>
-                     {{ comment }}</p>
-                    {% endfor %}
+                    <div class="card-body">
+                        <hr>
+                        {% if not post.comments.all %}
+                            No Comment Yet
+                        {% else %}
+                            
+                            {% for comment in post.comments.all %}
+                                 <h3>Comments...</h3>
+                                 <strong>
+                                    Author : {{ comment.author }} <br>
+                                    Comment: {{comment.comment}}
+                                 </strong>      
+                            {% endfor %}
+                        {% endif %}
+                        <br>
+                        <a href="{% url 'comment'  post.pk %}">Add Comments</a>
+                            <hr>
+                    </div>
                 </div>
             </div>
             {% endfor %}
