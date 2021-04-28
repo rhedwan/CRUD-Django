@@ -2,7 +2,7 @@
 This repo contains all projects related to Django
 This is BlogApp website
 
-Link to the Heroku: 
+Link to the Heroku: https://blog--crud--django.herokuapp.com/
 
 The user can only view the blogpost when are not signed in via this (http://127.0.0.1:8000/).
 
